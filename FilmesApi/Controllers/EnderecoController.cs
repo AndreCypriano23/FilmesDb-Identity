@@ -35,12 +35,15 @@ namespace FilmesAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Endereco> RecuperaEnderecos()
+        public IActionResult RecuperaEnderecos()
         {
+            List<ReadEnderecoDto> readDto = _enderecoService.RecuperaEnderecos();
+            if (readDto == null) return NotFound();
 
-            return _enderecoService.RecuperaEnderecos(); 
-
+            return Ok(readDto); 
+            
         }
+
 
         [HttpGet("{id}")]
         public IActionResult RecuperaEnderecosPorId(int id)

@@ -30,9 +30,15 @@ namespace FilmesApi.Services
             return _mapper.Map<ReadEnderecoDto>(endereco);//convertendo um endereco para ReadEnderecoDto
         }
 
-        public IEnumerable<Endereco> RecuperaEnderecos()
+        public List<ReadEnderecoDto> RecuperaEnderecos()
         {
-           return _context.Enderecos;
+            List<Endereco> enderecos = _context.Enderecos.ToList();
+            if(enderecos == null)
+            {
+                return null;
+            }
+
+            return _mapper.Map<List<ReadEnderecoDto>>(enderecos);
         }
 
         public ReadEnderecoDto RecuperaEnderecosPorId(int id)

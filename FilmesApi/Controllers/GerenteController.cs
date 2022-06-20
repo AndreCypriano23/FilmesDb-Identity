@@ -39,7 +39,7 @@ namespace FilmesApi.Controllers
         public IActionResult RecuperaGerentePorId(int id)
         {
             ReadGerenteDto readDto =  _gerenteService.RecuperaGerentePorId(id);
-            if (readDto != null) return Ok();
+            if (readDto != null) return Ok(readDto);
 
             return NotFound();
         }

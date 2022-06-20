@@ -36,9 +36,9 @@ namespace FilmesApi.Controllers
         [HttpGet("{id}")]
         public IActionResult RecuperaSessaoPorId(int id)
         {
-            ReadSessaoDto sessaoDto = _sessaoService.RecuperaSessaoPorId(id);
+            ReadSessaoDto readDto = _sessaoService.RecuperaSessaoPorId(id);
 
-            if (sessaoDto != null) return Ok();
+            if (readDto != null) return Ok(readDto);
           
             return NotFound();
 
