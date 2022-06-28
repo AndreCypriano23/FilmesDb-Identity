@@ -35,7 +35,10 @@ namespace UsuariosAPI
             );
             services.AddIdentity<IdentityUser<int>, IdentityRole<int>>()
                 .AddEntityFrameworkStores<UserDbContext>();
+            services.AddScoped<LogoutService, LogoutService>();
             services.AddScoped<CadastroService, CadastroService>(); //incluir o cadastro service que vai ser responsável por injetar ele mesmo
+            services.AddScoped<TokenService, TokenService>();
+            services.AddScoped<LoginService, LoginService>();
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
