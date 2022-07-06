@@ -33,14 +33,21 @@ namespace UsuariosAPI
             services.AddDbContext<UserDbContext>(options =>
                   options.UseMySQL(Configuration.GetConnectionString("UsuarioConnection"))
             );
-            services.AddIdentity<IdentityUser<int>, IdentityRole<int>>()
-                .AddEntityFrameworkStores<UserDbContext>();
+            services.AddIdentity<IdentityUser<int>, IdentityRole<int>>(
+
+                opt => opt.SignIn.RequireConfirmedEmail = true //exigi que exista esse campo
+
+                )
+                .AddEntityFrameworkStores<UserDbContext>()
+                .AddDefaultTokenProviders();
+            services.AddControllers();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddScoped<EmailService, EmailService>();
             services.AddScoped<LogoutService, LogoutService>();
             services.AddScoped<CadastroService, CadastroService>(); //incluir o cadastro service que vai ser responsável por injetar ele mesmo
             services.AddScoped<TokenService, TokenService>();
             services.AddScoped<LoginService, LoginService>();
-            services.AddControllers();
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+      
 
         }
 
