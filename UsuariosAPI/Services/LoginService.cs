@@ -36,7 +36,12 @@ namespace UsuariosAPI.Services
                     .Users
                     .FirstOrDefault(usuario => usuario.NormalizedUserName == request.Username.ToUpper() );//Encontrando esse usuário que acabou de fazer o login Essa propriedade normilizeUseNname dá para ver ali nas tabelas do banco
                    
-                Token token = _tokenService.CreateToken(identityUser);
+                Token token = _tokenService
+                    .CreateToken(identityUser, _signInManager
+                    .UserManager
+                    .GetRolesAsync(identityUser)
+                    .Result.FirstOrDefault()          
+                    );//vou passar aqui a role do usuário
 
                 return Result.Ok().WithSuccess(token.Value);//retornei o valor do Token que foi gerado para a controller
             }

@@ -15,14 +15,15 @@ namespace UsuariosAPI.Services
     {
         //Classe responsável pela criação do Token encapsulado
 
-        public Token CreateToken(IdentityUser<int> usuario)
+        public Token CreateToken(IdentityUser<int> usuario, string role)
         {
             //Quais são os direitos do usuário, o que ele está reclamando, vamos usar o claim
             //Claim, coisas de Direito de User que estarei reclamando
             Claim[] direitosUsuario = new Claim[]
             {
                 new Claim("username", usuario.UserName),
-                new Claim("id", usuario.Id.ToString())
+                new Claim("id", usuario.Id.ToString()),
+                new Claim(ClaimTypes.Role, role)
 
             };//Array de claims
 
@@ -48,5 +49,6 @@ namespace UsuariosAPI.Services
             return new Token(tokenString);
 
         }
+
     }
 }
