@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilmesApi", "FilmesApi\FilmesApi.csproj", "{C5BAD384-92D3-4EEF-A1CE-3603CBF45DDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsuariosAPI", "UsuariosAPI\UsuariosAPI.csproj", "{1247FE02-24A4-40C6-AF93-A5C87E575E87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsuariosAPI", "UsuariosAPI\UsuariosAPI.csproj", "{1247FE02-24A4-40C6-AF93-A5C87E575E87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

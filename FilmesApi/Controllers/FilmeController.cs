@@ -40,10 +40,11 @@ namespace FilmesAPI.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "admin, regular")]
         public IActionResult RecuperaFilmes([FromQuery] int? classificacaoEtaria = null)//esse parametro pode ser tanto um nulo quanto um inteiro
         {
             List<ReadFilmeDto> readDto = _filmeService.RecuperaFilmes(classificacaoEtaria);
-            if (readDto != null) return Ok();
+            if (readDto != null) return Ok(readDto);
             return NotFound();
         }
 

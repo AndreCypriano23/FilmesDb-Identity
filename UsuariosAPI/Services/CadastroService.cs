@@ -39,10 +39,8 @@ namespace UsuariosAPI.Services
                 .CreateAsync(usuarioIdentity, createDto.Password); //Criar usuário de maneira assíncrona com uma senha
 
 
-            var createRoleResult = _roleManager.CreateAsync(new IdentityRole<int>("admin")).Result;
-
-            var usuarioRoleResult = _userManager
-                .AddToRoleAsync(usuarioIdentity, "admin").Result;
+            //Add usuário regular
+            _userManager.AddToRoleAsync(usuarioIdentity, "regular");
 
             //Ele retorna uma task(tarefa)
             if (resultadoIdentity.Result.Succeeded)
