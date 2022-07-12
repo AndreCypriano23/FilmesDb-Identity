@@ -15,16 +15,14 @@ namespace UsuariosAPI.Services
     public class CadastroService
     {
         private IMapper _mapper;
-        private UserManager<IdentityUser<int>> _userManager;
+        private UserManager<CustomIdentityUser> _userManager;
         private EmailService _emailService;
-        private RoleManager<IdentityRole<int>> _roleManager;
 
-        public CadastroService(IMapper mapper, UserManager<IdentityUser<int>> userManager, EmailService emailService, RoleManager<IdentityRole<int>> roleManager)
+        public CadastroService(IMapper mapper, UserManager<CustomIdentityUser> userManager, EmailService emailService)
         {
             _mapper = mapper;
             _userManager = userManager;
             _emailService = emailService;
-            _roleManager = roleManager;
         }
 
         public Result CadastraUsuario(CreateUsuarioDto createDto)
@@ -32,7 +30,7 @@ namespace UsuariosAPI.Services
             //Lógica de cadastro de usuário
             Usuario usuario = _mapper.Map<Usuario>(createDto);
             //tabela no banco é AspNetUsers
-            IdentityUser<int> usuarioIdentity = _mapper.Map<IdentityUser<int>>(usuario); //Convertendo um IdentityUser para o meu usuário
+            CustomIdentityUser usuarioIdentity = _mapper.Map<CustomIdentityUser>(usuario); //Convertendo um IdentityUser para o meu usuário
 
             //vamos usar um gerenciador de usuário(manage user)
             Task<IdentityResult> resultadoIdentity = _userManager
